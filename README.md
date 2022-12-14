@@ -6,9 +6,9 @@ Python script using ffmpeg binary to cut video files.
 
 There are two different ways to cut files:
 - With no option provided, you can manually type the video filename and the frames to cut
-- You can provide a text filename with the information syntaxed like [a relative link](example.txt)
+- You can provide a text filename with the information syntaxed like [this](example.txt)
 
-usage: video_cutter.py [-h] [-f [FILE]] [-a [AUDIO]] [-e [VIDEO_EXT]]
+usage: <code>video_cutter.py [-h] [-f [FILE]] [-a [AUDIO]] [-e [VIDEO_EXT]]</code>
 
 options:
   -h, --help            show this help message and exit
