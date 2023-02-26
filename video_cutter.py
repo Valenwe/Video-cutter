@@ -187,7 +187,7 @@ if __name__ == "__main__":
                 if os.path.isfile(line):
                     current_filename = line
                     video_per_frame[current_filename] = []
-                elif use_alphabet_only(line, f"0123456789:{time_separator}{frame_separator}"):
+                elif use_alphabet_only(line, f"0123456789:{time_separator}{frame_separator}") and current_filename != None:
                     # if valid frame cut
                     if frame_separator in line:
                         for frame_str in line.split(frame_separator):
@@ -197,7 +197,10 @@ if __name__ == "__main__":
                         video_per_frame[current_filename].append(
                             frame_str_to_obj(line))
 
-        logging.info("File loaded, processing videos...")
+        if current_filename == None:
+            logging.error("No video filename typed at the beginning of the given text file.")
+        else:
+            logging.info("File loaded, processing videos...")
 
     # if video reading mode
     if mode == "video":
