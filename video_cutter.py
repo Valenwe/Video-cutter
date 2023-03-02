@@ -10,7 +10,6 @@ import subprocess
 import shutil
 from tqdm import tqdm
 
-logging.basicConfig(level=logging.INFO)
 # Example: 5:22/5:35
 frame_separator = "_"
 time_separator = "/"
@@ -92,6 +91,7 @@ parser.add_argument("-a", "--audio", dest="audio", type=int,
                     nargs="?", default=0, help="The audio track of the file (to change language)")
 parser.add_argument("-e", "--extension", dest="video_ext", type=str,
                     nargs="?", default="mp4", help="The file extension, if missing in file")
+parser.add_argument("-v", "--verbose", dest="verbose", action="store_true", help="Enable verbosity")
 args = parser.parse_args()
 
 # The mode is either 'json' reading, 'special_file' for various file content or 'video' reading
@@ -100,6 +100,11 @@ current_filename = None
 first = True
 
 if __name__ == "__main__":
+
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
 
     # Check if ffmpeg exists
     if not shutil.which("ffmpeg") and not os.path.isfile("ffmpeg.exe"):
